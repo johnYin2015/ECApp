@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+
+//configurations.all{
+//    resolutionStrategy {
+//        force 'com.android.support:support-annotations:26.1.0'
+//    }
+//}
+configurations.all {
+    //resolutionStrategy.force 'com.android.support:support-annotations:26.1.0',是否要加在这里打个问号
+    //循环一个个的依赖库
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        //获取当前循环到的依赖库
+        def requested = details.requested
+        //如果这个依赖库群组的名字是com.android.support
+        if (requested.group == 'com.android.support') {
+            //且其名字不是以multidex开头的
+            if (!requested.name.startsWith("multidex")) {
+                //这里指定需要统一的依赖版本
+//                details.useVersion '27.1.1'
+                details.useVersion '26.1.0'
+            }
+        }
+    }
+}
+
+android {
+    compileSdkVersion 27
+    //buildToolsVersion '27.0.1'
+    defaultConfig {
+        applicationId "com.diabin.fastec.example"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':latte-ec')
+    annotationProcessor project(":latte-compiler")
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="example delegate"
+        tools:ignore="HardcodedText" />
+
+    <!--<com.joanzapata.iconify.widget.IconTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#22000000"
+        android:shadowDx="0"
+        android:shadowDy="5"
+        android:shadowRadius="1"
+        android:text="Welcome {fa-smile-o} {fa-hand-peace-o} !"
+        android:textColor="#2A9BDA"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText" />
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:shadowColor="#22000000"
+        android:text="{fa-weixin}"
+        tools:ignore="HardcodedText"
+        android:textColor="#04b0bf"
+        android:textSize="40sp" />
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/icon_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="{fa-coffee}"
+        tools:ignore="HardcodedText" />
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/icon_index_scan"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="{icon-scan}"
+        android:textSize="25sp" />
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/icon_index_alipay"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="{icon-ali-pay}"
+        android:textSize="25sp" />-->
+</android.support.v7.widget.LinearLayoutCompat>
