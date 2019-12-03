@@ -36,19 +36,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    //android支持库
-    //noinspection GradleCompatible
-//    api 'com.android.support:support-v4:27.1.1'
-//    api 'com.android.support:appcompat-v7:27.1.1'
-//    api 'com.android.support:design:27.1.1'
 
+    //android support包
     //noinspection GradleCompatible
     api 'com.android.support:support-v4:26.1.0'
     api 'com.android.support:appcompat-v7:26.1.0'
     api 'com.android.support:design:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //字体图标
     api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
     // (v4.5)
@@ -56,8 +52,8 @@ dependencies {
     // (v2.0.1)
     //fragmentation依赖
     //noinspection GradleDependency
-    api 'me.yokeyword:fragmentation:0.10.1'
-    api 'me.yokeyword:fragmentation-swipeback:0.7.9'
+    api 'me.yokeyword:fragmentation:1.0.3'
+    api 'me.yokeyword:fragmentation-swipeback:1.0.3'
     //ButterKnife
     //noinspection GradleDependency
     api 'com.jakewharton:butterknife:9.0.0-SNAPSHOT'

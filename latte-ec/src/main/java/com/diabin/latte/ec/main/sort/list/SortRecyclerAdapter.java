@@ -17,6 +17,8 @@ import com.diabin.latte.ec.main.sort.content.ContentDelegate;
 
 import java.util.List;
 
+import me.yokeyword.fragmentation.SupportHelper;
+
 /**
  * 作者：johnyin2015
  * 日期：2019/11/16 02:09
@@ -99,9 +101,9 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     //切换/替换content界面
     public void switchContent(ContentDelegate delegate) {
         //DELEGATE:sortDel
-        final ContentDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+        final ContentDelegate contentDelegate = SupportHelper.findFragment(DELEGATE.getChildFragmentManager(),ContentDelegate.class);
         if (contentDelegate != null) {
-            contentDelegate.replaceFragment(delegate, false);//param1:toFragment
+            contentDelegate.getSupportDelegate().replaceFragment(delegate, false);//param1:toFragment
         }
 
         //FastEC

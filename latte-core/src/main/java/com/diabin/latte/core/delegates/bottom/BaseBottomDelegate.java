@@ -3,6 +3,7 @@ package com.diabin.latte.core.delegates.bottom;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -104,9 +106,9 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
 
 
         //处理fragment
-        final SupportFragment[] bottomItemDelegates =
-                ITEMS_DELEGATES.toArray(new SupportFragment[size]);
-        loadMultipleRootFragment(R.id.bottom_bar_delegate_container,
+        final ISupportFragment[] bottomItemDelegates =
+                ITEMS_DELEGATES.toArray(new ISupportFragment[size]);
+        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container,
                 mIndexDelegate, bottomItemDelegates);
 
     }
@@ -136,7 +138,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         final AppCompatTextView titleView = (AppCompatTextView) item.getChildAt(1);
         iconView.setTextColor(mClickedColor);
         titleView.setTextColor(mClickedColor);
-        showHideFragment(ITEMS_DELEGATES.get(tag), ITEMS_DELEGATES.get(mCurrentDelegate));
+        getSupportDelegate().showHideFragment(ITEMS_DELEGATES.get(tag), ITEMS_DELEGATES.get(mCurrentDelegate));
         mCurrentDelegate = tag;
     }
 }
