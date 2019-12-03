@@ -16,6 +16,8 @@ import com.diabin.latte.core.net.callback.ISuccess;
 import com.diabin.latte.core.util.log.LatteLogger;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
+import com.diabin.latte.ec.pay.FastPay;
+import com.diabin.latte.ec.pay.IAlPayResultListener;
 import com.diabin.latte.ui.recycler.MultipleItemEntity;
 import com.joanzapata.iconify.widget.IconTextView;
 
@@ -26,7 +28,7 @@ import java.util.WeakHashMap;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemClickListener {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemClickListener, IAlPayResultListener {
 
     @BindView(R2.id.rv_shop_cart)
     RecyclerView mRvShopCart = null;
@@ -180,10 +182,45 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
+                        LatteLogger.d("ORDER", response);
+                        final int orderId = JSON.parseObject(response).getInteger("result");
                         //进行具体的支付
+                        FastPay.create(ShopCartDelegate.this)
+                                .setOrderId(orderId)
+                                .setPayResultListener(ShopCartDelegate.this)
+                                .beginPayDialog();
                     }
                 })
                 .build()
                 .post();
+        FastPay.create(ShopCartDelegate.this)
+                .setOrderId(1111)
+                .setPayResultListener(this)
+                .beginPayDialog();
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
     }
 }
