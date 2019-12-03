@@ -35,7 +35,7 @@ public class ShopCartDataConverter extends DataConverter {
                     .setField(MultipleFields.ITEM_TYPE, ShopCartItemType.SHOP_CART_ITEM_TYPE)
                     .setField(MultipleFields.ID, id)
                     .setField(MultipleFields.IMAGE_URL, thumb)
-                    .setField(ShopCartItemFields.TITLE, title)//false:默认未点击
+                    .setField(MultipleFields.TITLE, title)//false:默认未点击
                     .setField(ShopCartItemFields.DESC, desc)
                     .setField(ShopCartItemFields.COUNT, count)
                     .setField(ShopCartItemFields.PRICE, price)

@@ -3,6 +3,7 @@ package com.diabin.latte.core.delegates;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -17,7 +18,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
-import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.SupportFragmentDelegate;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
@@ -31,6 +31,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     private final SupportFragmentDelegate DELEGATE = new SupportFragmentDelegate(this);
 
     private FragmentActivity _mActivity = null;
+    private View mRootView = null;
 
     //子类重写此方法，返回一个布局资源
     public abstract Object setLayout();
@@ -87,9 +88,17 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
 
         //判空 判空 判空
         unbinder = ButterKnife.bind(this, rootView);
+        mRootView = rootView;
         onBindView(rootView, savedInstanceState);
 
         return rootView;
+    }
+
+    public <T extends View> T $(@IdRes int viewId) {
+        if (mRootView != null) {
+            return mRootView.findViewById(viewId);
+        }
+        throw new NullPointerException("rootView is null");
     }
 
     public final ProxyActivity getProxyActivity(){

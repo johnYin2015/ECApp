@@ -7,7 +7,6 @@ package com.diabin.latte.ec.main.cart;
  */
 @SuppressWarnings("SpellCheckingInspection")
 enum ShopCartItemFields {
-    TITLE,
     DESC,
     COUNT,
     PRICE,

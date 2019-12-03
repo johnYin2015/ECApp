@@ -73,7 +73,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 //获取所有值
                 final int id = entity.getField(MultipleFields.ID);
                 final String thumbUrl = entity.getField(MultipleFields.IMAGE_URL);
-                final String title = entity.getField(ShopCartItemFields.TITLE);
+                final String title = entity.getField(MultipleFields.TITLE);
                 final String desc = entity.getField(ShopCartItemFields.DESC);
                 final int count = entity.getField(ShopCartItemFields.COUNT);
                 final double price = entity.getField(ShopCartItemFields.PRICE);

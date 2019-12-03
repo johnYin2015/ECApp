@@ -9,6 +9,7 @@ import com.diabin.latte.core.delegates.bottom.BottomTabBean;
 import com.diabin.latte.ec.main.cart.ShopCartDelegate;
 import com.diabin.latte.ec.main.discover.DiscoverDelegate;
 import com.diabin.latte.ec.main.index.IndexDelegate;
+import com.diabin.latte.ec.main.personal.PersonalDelegate;
 import com.diabin.latte.ec.main.sort.SortDelegate;
 
 import java.util.LinkedHashMap;
@@ -26,7 +27,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
         items.put(new BottomTabBean("{fa-sort}","分类"),new SortDelegate());//分类
         items.put(new BottomTabBean("{fa-compass}","发现"),new DiscoverDelegate());//发现
         items.put(new BottomTabBean("{fa-shopping-cart}","购物车"),new ShopCartDelegate());//购物车
-        items.put(new BottomTabBean("{fa-user}","我的"),new SortDelegate());//我的
+        items.put(new BottomTabBean("{fa-user}","我的"),new PersonalDelegate());//我的
         return bottomItemBuilder.builder().addAll(items).build();
     }
 

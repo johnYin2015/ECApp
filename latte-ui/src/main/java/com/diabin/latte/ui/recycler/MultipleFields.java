@@ -8,6 +8,7 @@ public enum MultipleFields {
     //TAG备用
     ITEM_TYPE,
     TEXT,
+    TITLE,
     IMAGE_URL,
     BANNERS,
     SPAN_SIZE,//沾满 还是 1/2
