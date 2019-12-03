@@ -9,9 +9,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.diabin.latte.core.app.Latte;
-import com.diabin.latte.core.ui.recycler.RgbValue;
 import com.diabin.latte.core.util.log.LatteLogger;
 import com.diabin.latte.ec.R;
+import com.diabin.latte.ui.recycler.RgbValue;
 
 /**
  * 作者：johnyin2015

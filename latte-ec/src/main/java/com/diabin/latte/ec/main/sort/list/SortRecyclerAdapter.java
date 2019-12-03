@@ -6,14 +6,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
-import com.diabin.latte.core.ui.recycler.ItemType;
-import com.diabin.latte.core.ui.recycler.MultipleFields;
-import com.diabin.latte.core.ui.recycler.MultipleItemEntity;
-import com.diabin.latte.core.ui.recycler.MultipleRecyclerAdapter;
-import com.diabin.latte.core.ui.recycler.MultipleViewHolder;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.main.sort.SortDelegate;
 import com.diabin.latte.ec.main.sort.content.ContentDelegate;
+import com.diabin.latte.ui.recycler.ItemType;
+import com.diabin.latte.ui.recycler.MultipleFields;
+import com.diabin.latte.ui.recycler.MultipleItemEntity;
+import com.diabin.latte.ui.recycler.MultipleRecyclerAdapter;
+import com.diabin.latte.ui.recycler.MultipleViewHolder;
 
 import java.util.List;
 

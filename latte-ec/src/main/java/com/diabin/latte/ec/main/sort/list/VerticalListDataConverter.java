@@ -3,11 +3,11 @@ package com.diabin.latte.ec.main.sort.list;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.diabin.latte.core.ui.recycler.DataConverter;
-import com.diabin.latte.core.ui.recycler.ItemType;
-import com.diabin.latte.core.ui.recycler.MultipleFields;
-import com.diabin.latte.core.ui.recycler.MultipleItemEntity;
-import com.diabin.latte.core.ui.recycler.MultipleItemEntityBuilder;
+import com.diabin.latte.ui.recycler.DataConverter;
+import com.diabin.latte.ui.recycler.ItemType;
+import com.diabin.latte.ui.recycler.MultipleFields;
+import com.diabin.latte.ui.recycler.MultipleItemEntity;
+import com.diabin.latte.ui.recycler.MultipleItemEntityBuilder;
 
 import java.util.ArrayList;
 

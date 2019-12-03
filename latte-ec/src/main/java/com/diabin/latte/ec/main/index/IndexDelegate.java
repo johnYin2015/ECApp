@@ -11,12 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.diabin.latte.core.delegates.bottom.BottomItemDelegate;
-import com.diabin.latte.core.ui.recycler.BaseItemDecoration;
-import com.diabin.latte.core.ui.recycler.IndexDataConverter;
-import com.diabin.latte.core.ui.refresh.RefreshHandler;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
 import com.diabin.latte.ec.main.EcBottomDelegate;
+import com.diabin.latte.ui.recycler.BaseItemDecoration;
+import com.diabin.latte.ui.recycler.IndexDataConverter;
+import com.diabin.latte.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;

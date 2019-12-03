@@ -10,10 +10,10 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.diabin.latte.core.app.AccountManager;
 import com.diabin.latte.core.app.IUserChecker;
 import com.diabin.latte.core.delegates.LatteDelegate;
-import com.diabin.latte.core.ui.launcher.IOnLauncherFinishListener;
-import com.diabin.latte.core.ui.launcher.LauncherHolderCreator;
-import com.diabin.latte.core.ui.launcher.OnLauncherFinishTag;
-import com.diabin.latte.core.ui.launcher.ScrollLauncherTag;
+import com.diabin.latte.ui.launcher.IOnLauncherFinishListener;
+import com.diabin.latte.ui.launcher.LauncherHolderCreator;
+import com.diabin.latte.ui.launcher.OnLauncherFinishTag;
+import com.diabin.latte.ui.launcher.ScrollLauncherTag;
 import com.diabin.latte.core.ui.storage.LattePreference;
 import com.diabin.latte.ec.R;
 

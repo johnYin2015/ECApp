@@ -13,10 +13,10 @@ import com.alibaba.fastjson.JSON;
 import com.diabin.latte.core.delegates.bottom.BottomItemDelegate;
 import com.diabin.latte.core.net.RestClient;
 import com.diabin.latte.core.net.callback.ISuccess;
-import com.diabin.latte.core.ui.recycler.MultipleItemEntity;
 import com.diabin.latte.core.util.log.LatteLogger;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
+import com.diabin.latte.ui.recycler.MultipleItemEntity;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;

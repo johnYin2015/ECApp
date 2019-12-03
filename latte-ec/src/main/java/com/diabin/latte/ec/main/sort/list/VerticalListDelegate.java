@@ -9,10 +9,10 @@ import android.view.View;
 import com.diabin.latte.core.delegates.LatteDelegate;
 import com.diabin.latte.core.net.RestClient;
 import com.diabin.latte.core.net.callback.ISuccess;
-import com.diabin.latte.core.ui.recycler.MultipleItemEntity;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
 import com.diabin.latte.ec.main.sort.SortDelegate;
+import com.diabin.latte.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 
