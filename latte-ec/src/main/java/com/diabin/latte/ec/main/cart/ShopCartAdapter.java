@@ -5,11 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.diabin.latte.core.app.Latte;
+import com.diabin.latte.core.net.RestClient;
+import com.diabin.latte.core.net.callback.ISuccess;
 import com.diabin.latte.core.ui.recycler.MultipleFields;
 import com.diabin.latte.core.ui.recycler.MultipleItemEntity;
 import com.diabin.latte.core.ui.recycler.MultipleRecyclerAdapter;
@@ -33,14 +36,32 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     private boolean mIsSelectedAll = false;
 
+    private double mTotalPrice = 0.00;//购物车中所有商品的总价
+
+    private ICartItemClickListener mCartItemClickListener = null;
+
     ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
         //添加item布局
         addItemType(ShopCartItemType.SHOP_CART_ITEM_TYPE, R.layout.item_shop_cart);
+        //初始化总价
+        for (MultipleItemEntity bean : data) {
+            final int num = bean.getField(ShopCartItemFields.COUNT);
+            final double price = bean.getField(ShopCartItemFields.PRICE);
+            mTotalPrice = mTotalPrice + num * price;
+        }
     }
 
     public void setIsSelectedAll(boolean isSelectedAll) {
         this.mIsSelectedAll = isSelectedAll;
+    }
+
+    public void setCartItemClickListener(ICartItemClickListener cartItemClickListener) {
+        this.mCartItemClickListener = cartItemClickListener;
+    }
+
+    public double getTotalPrice() {
+        return mTotalPrice;
     }
 
     @Override
@@ -94,6 +115,67 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         iconIsSelect.setTextColor(ContextCompat.getColor(Latte.getApplicationContext(), R.color.app_main));
                         entity.setField(ShopCartItemFields.IS_SELECTED, true);
                     }
+                });
+
+                //添加数量加减事件
+                //一般每次修改数量都会请求服务器，服务器收到post数据，然后验证用户，然后修改数据库关系，然后返回结果json，我过段时间会出服务端的解决方案视频，想干全栈来听听
+                iconMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //同步到服务器
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);//后台返回的
+                        if (Integer.parseInt(tvCount.getText().toString()) > 1) {//前端显示的
+                            RestClient.builder()
+                                    .url("index_data.json")//?没有对应接口，暂时用这个
+                                    //.params("count",currentCount)//?没有对应接口，暂时用这个
+                                    .loader(mContext)
+                                    .success(new ISuccess() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            int countNum = Integer.parseInt(tvCount.getText().toString());
+                                            countNum--;
+                                            tvCount.setText(String.valueOf(countNum));
+                                            //计算总价并回调,交由delegate处理
+                                            if (mCartItemClickListener != null) {
+                                                mTotalPrice = mTotalPrice - price;
+                                                final double itemTotal = countNum * price;
+                                                mCartItemClickListener.onItemClick(itemTotal);
+                                            }
+                                        }
+                                    })
+                                    .build()
+                                    .get();//?没有对应接口，暂时用get
+                        }
+                    }
+                });
+
+                iconPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //同步到服务器
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);//后台返回的
+                        RestClient.builder()
+                                .url("index_data.json")//?没有对应接口，暂时用这个
+                                //.params("count",currentCount)//?没有对应接口，暂时用这个
+                                .loader(mContext)
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        int countNum = Integer.parseInt(tvCount.getText().toString());
+                                        countNum++;
+                                        tvCount.setText(String.valueOf(countNum));
+                                        //计算总价并回调,交由delegate处理
+                                        if (mCartItemClickListener != null) {
+                                            mTotalPrice = mTotalPrice + price;
+                                            final double itemTotal = countNum * price;
+                                            mCartItemClickListener.onItemClick(itemTotal);
+                                        }
+                                    }
+                                })
+                                .build()
+                                .get();//?没有对应接口，暂时用get
+                    }
+
                 });
                 break;
             default:

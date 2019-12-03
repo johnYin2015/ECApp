@@ -4,25 +4,29 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.fastjson.JSON;
 import com.diabin.latte.core.delegates.bottom.BottomItemDelegate;
 import com.diabin.latte.core.net.RestClient;
 import com.diabin.latte.core.net.callback.ISuccess;
 import com.diabin.latte.core.ui.recycler.MultipleItemEntity;
+import com.diabin.latte.core.util.log.LatteLogger;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemClickListener {
 
     @BindView(R2.id.rv_shop_cart)
     RecyclerView mRvShopCart = null;
@@ -30,6 +34,9 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
     @BindView(R2.id.icon_shop_cart_select_all)
     IconTextView mIconSelectAll = null;
     private ShopCartAdapter mAdapter;
+
+    @BindView(R2.id.tv_shop_cart_total_price)
+    AppCompatTextView mTvTotalPrice = null;
 
     @OnClick(R2.id.icon_shop_cart_select_all)
     public void onClickSelectAll() {
@@ -102,6 +109,11 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
         mAdapter.notifyDataSetChanged();
     }
 
+    @OnClick(R2.id.tv_shop_cart_pay)
+    public void onClickPay() {
+        createOrder();
+    }
+
     private int mItemSelectedCount = 0;
     //购物车数量标记
     private int mCurrentCount = 0;
@@ -140,5 +152,38 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
                         LinearLayoutManager.VERTICAL, false);
         mRvShopCart.setLayoutManager(manager);
         mRvShopCart.setAdapter(mAdapter);
+        mAdapter.setCartItemClickListener(this);
+        final double totalPrice = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(totalPrice));
+    }
+
+    @Override
+    public void onItemClick(double itemTotal) {
+        final double totalPrice = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText("￥" + totalPrice);
+    }
+
+    private void createOrder() {
+        final String orderUrl = "您生成订单的url";
+        final WeakHashMap<String, Object> params = new WeakHashMap<>();
+        params.put("userid", "111122223333444");
+        params.put("amount", 0.01);
+        params.put("comment", "测试支付");
+        params.put("type", 1);
+        params.put("ordertype", 0);
+        params.put("isAnoymous", true);
+        params.put("followeduser", 0);
+        RestClient.builder()
+                .url(orderUrl)
+                .params(params)
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        //进行具体的支付
+                    }
+                })
+                .build()
+                .post();
     }
 }
