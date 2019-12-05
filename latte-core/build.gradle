@@ -109,4 +109,12 @@ dependencies {
     compileOnly 'com.google.auto.value:auto-value:1.5.1'
     //noinspection GradleDependency
     annotationProcessor 'com.google.auto.value:auto-value:1.5.1'
+    //动态权限处理
+    api 'com.github.hotchemi:permissionsdispatcher:3.0.1'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.0.1'
+    //工具类
+    //工具包
+    api 'com.blankj:utilcode:1.9.3'
+    //图片剪裁
+    api 'com.github.yalantis:ucrop:2.2.1-native'
 }

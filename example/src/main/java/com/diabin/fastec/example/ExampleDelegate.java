@@ -39,7 +39,6 @@ public class ExampleDelegate extends LatteDelegate {
         //icon_scan
     }
 
-    //TODO:测试
     private void onRxCallGet() {
         final String url = "index.jsp";
         final WeakHashMap<String,Object> params = new WeakHashMap<>();
@@ -69,7 +68,6 @@ public class ExampleDelegate extends LatteDelegate {
                 });
     }
 
-    //TODO:测试
     private void onRxRestClientCallGet() {
         final String url = "index.jsp";
         final WeakHashMap<String,Object> params = new WeakHashMap<>();

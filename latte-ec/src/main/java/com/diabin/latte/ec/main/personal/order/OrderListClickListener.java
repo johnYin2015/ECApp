@@ -1,4 +1,4 @@
-package com.diabin.latte.ec.main.personal.listener;
+package com.diabin.latte.ec.main.personal.order;
 
 import android.view.View;
 
@@ -9,19 +9,19 @@ import com.diabin.latte.core.delegates.LatteDelegate;
 /**
  * 描述：
  * 作者：johnyin2015
- * 日期：2019/12/4 04:48
+ * 日期：2019/12/4 14:47
  */
-public class PersonalClickListener extends SimpleClickListener {
+public class OrderListClickListener extends SimpleClickListener {
 
     private final LatteDelegate DELEGATE;
 
-    public PersonalClickListener(LatteDelegate delegate) {
+    public OrderListClickListener(LatteDelegate delegate) {
         this.DELEGATE = delegate;
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        DELEGATE.getSupportDelegate().start(new OrderCommentDelegate());
     }
 
     @Override

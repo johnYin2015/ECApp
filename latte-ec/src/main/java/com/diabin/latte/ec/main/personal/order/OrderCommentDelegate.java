@@ -1,4 +1,4 @@
-package com.diabin.latte.ec.main.personal.setting;
+package com.diabin.latte.ec.main.personal.order;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,16 +10,17 @@ import com.diabin.latte.ec.R;
 /**
  * 描述：
  * 作者：johnyin2015
- * 日期：2019/12/4 04:09
+ * 日期：2019/12/4 14:49
  */
-public class SystemSettingsDelegate extends LatteDelegate {
+public class OrderCommentDelegate extends LatteDelegate {
 
     @Override
     public Object setLayout() {
-        return R.layout.delegate_settings;
+        return R.layout.delegate_order_comment;
     }
 
     @Override
     public void onBindView(View rootView, @Nullable Bundle savedInstanceState) {
+        super.onBindView(rootView, savedInstanceState);
     }
 }

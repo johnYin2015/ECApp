@@ -14,7 +14,6 @@ import com.diabin.latte.ec.main.personal.address.AddressDelegate;
 import com.diabin.latte.ec.main.personal.list.ListAdapter;
 import com.diabin.latte.ec.main.personal.list.ListBean;
 import com.diabin.latte.ec.main.personal.list.ListItemType;
-import com.diabin.latte.ec.main.personal.listener.PersonalClickListener;
 import com.diabin.latte.ec.main.personal.order.OrderListDelegate;
 import com.diabin.latte.ec.main.personal.profile.UserProfileDelegate;
 import com.diabin.latte.ec.main.personal.setting.SystemSettingsDelegate;
