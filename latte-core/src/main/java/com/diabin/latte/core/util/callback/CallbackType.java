@@ -6,4 +6,7 @@ package com.diabin.latte.core.util.callback;
 
 public enum CallbackType {
     ON_CROP,
+    AG_OPEN_PUSH,
+    TAG_OPEN_PUSH,
+    TAG_STOP_PUSH;
 }

@@ -34,6 +34,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "f9e1bed92a3a16ddfd524810",
+                JPUSH_CHANNEL: "developer-default",
+        ]
     }
     buildTypes {
         release {
@@ -53,4 +58,9 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':latte-ec')
     annotationProcessor project(":latte-compiler")
+    //极光推送库
+    //noinspection GradleDependency
+    implementation 'cn.jiguang.sdk:jcore:1.1.0'
+    //noinspection GradleDependency
+    implementation 'cn.jiguang.sdk:jpush:3.0.1'
 }
