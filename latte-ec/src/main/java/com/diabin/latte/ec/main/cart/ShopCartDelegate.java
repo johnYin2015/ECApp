@@ -80,7 +80,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
             int removePosition;
             final int entityPosition = deleteEntity.getField(ShopCartItemFields.POSITION);
             if (entityPosition > mCurrentCount - 1) {//entityPosition从1开始,所以减一
-                removePosition = entityPosition - (mTotalCount - mCurrentCount);//?mTotalCount没有赋值
+                removePosition = entityPosition - (mTotalCount - mCurrentCount);
             } else {
                 removePosition = entityPosition;
             }
