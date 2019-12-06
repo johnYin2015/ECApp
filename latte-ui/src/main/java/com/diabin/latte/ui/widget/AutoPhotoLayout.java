@@ -1,5 +1,6 @@
 package com.diabin.latte.ui.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -71,6 +72,7 @@ public final class AutoPhotoLayout extends LinearLayoutCompat {
     public AutoPhotoLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         //必须recycle
+        @SuppressLint("CustomViewStyleable")
         final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.camera_flow_layout);
         mMaxNum = typedArray.getInt(R.styleable.camera_flow_layout_max_count, 1);
         mMaxLineNum = typedArray.getInt(R.styleable.camera_flow_layout_line_count, 3);
@@ -125,7 +127,9 @@ public final class AutoPhotoLayout extends LinearLayoutCompat {
                 lineHeight = Math.max(lineHeight, childHeight);
             }
             //最后一个子控件
-            if (i == cCount - 1) {//-1 yinwei cong0kaishi
+            //noinspection SpellCheckingInspection
+            if (i == cCount - 1)  //-1 yinwei cong0kaishi
+            {
                 width = Math.max(lineWidth, width);
                 //判断是否超过最大拍照限制
                 height += lineHeight;
@@ -147,6 +151,7 @@ public final class AutoPhotoLayout extends LinearLayoutCompat {
 
     //duocidiaoyong
     //
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         ALL_VIEWS.clear();
@@ -273,6 +278,7 @@ public final class AutoPhotoLayout extends LinearLayoutCompat {
                                 @Override
                                 public void onClick(View v) {
                                     //得到要删除的图片
+                                    @SuppressWarnings({"RedundantCast", "SpellCheckingInspection"})
                                     final AppCompatImageView deleteImageViwe =
                                             (AppCompatImageView) findViewById(mDeleteId);
                                     //设置图片逐渐消失的动画

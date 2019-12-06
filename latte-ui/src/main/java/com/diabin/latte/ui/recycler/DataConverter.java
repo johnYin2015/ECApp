@@ -24,4 +24,8 @@ public abstract class DataConverter {
     }
 
     public abstract ArrayList<MultipleItemEntity> convert();
+
+    public void clearData(){
+        ENTITIES.clear();
+    }
 }

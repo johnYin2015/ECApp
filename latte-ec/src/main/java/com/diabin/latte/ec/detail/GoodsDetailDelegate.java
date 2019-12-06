@@ -19,7 +19,7 @@ public class GoodsDetailDelegate extends LatteDelegate {
 
     @Override
     public Object setLayout() {
-        return R.layout.delegate_good_detail;
+        return R.layout.delegate_goods_detail;
     }
 
     @Override

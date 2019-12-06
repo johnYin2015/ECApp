@@ -24,6 +24,8 @@ public final class BottomItemBuilder {
     }
 
     public BottomItemBuilder addAll(LinkedHashMap<BottomTabBean,BottomItemDelegate> items){
+        //添加之前先清空之前添加的
+        ITEMS.clear();
         ITEMS.putAll(items);
         return this;
     }

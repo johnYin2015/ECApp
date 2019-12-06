@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.diabin.latte.core.ui.camera.CameraImageBean;
 import com.diabin.latte.core.ui.camera.LatteCamera;
 import com.diabin.latte.core.ui.camera.RequestCodes;
+import com.diabin.latte.core.ui.scanner.ScannerDelegate;
 import com.diabin.latte.core.util.callback.CallbackManager;
 import com.diabin.latte.core.util.callback.CallbackType;
 import com.diabin.latte.core.util.callback.IGlobalCallback;
@@ -53,6 +54,16 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     //这个是真正调用的方法
     public void startCameraWithCheck() {
         PermissionCheckerDelegatePermissionsDispatcher.startCameraWithPermissionCheck(this);
+    }
+
+    //扫描二维码(不直接调用)
+    @NeedsPermission(Manifest.permission.CAMERA)
+    void startScan(BaseDelegate delegate) {
+        delegate.getSupportDelegate().startForResult(new ScannerDelegate(), RequestCodes.SCAN);
+    }
+
+    public void startScanWithCheck(BaseDelegate delegate) {
+        PermissionCheckerDelegatePermissionsDispatcher.startScanWithPermissionCheck(this, delegate);
     }
 
     @OnPermissionDenied(Manifest.permission.CAMERA)

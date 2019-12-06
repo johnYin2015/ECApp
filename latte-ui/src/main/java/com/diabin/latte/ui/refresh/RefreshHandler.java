@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.diabin.latte.core.app.Latte;
 import com.diabin.latte.core.net.RestClient;
 import com.diabin.latte.core.net.callback.ISuccess;
+import com.diabin.latte.core.util.log.LatteLogger;
 import com.diabin.latte.ui.recycler.DataConverter;
 import com.diabin.latte.ui.recycler.MultipleRecyclerAdapter;
 
@@ -16,7 +17,7 @@ import com.diabin.latte.ui.recycler.MultipleRecyclerAdapter;
  * 作者：johnyin2015
  * 日期：2019/11/13 13:22
  */
-public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,BaseQuickAdapter.RequestLoadMoreListener {
+public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
 
     private final SwipeRefreshLayout REFRESH_LAYOUT;
     private final RecyclerView RECYCLERVIEW;
@@ -71,11 +72,11 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
                         final JSONObject jsonObject = JSON.parseObject(response);
                         BEAN.setTotalCount(jsonObject.getInteger("total"))
                                 .setPageSize(jsonObject.getInteger("page_size"));
-                       mAdapter= MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
-                       mAdapter.setOnLoadMoreListener(RefreshHandler.this,
-                               RECYCLERVIEW);
-                       RECYCLERVIEW.setAdapter(mAdapter);
-                       BEAN.addIndex();
+                        mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
+                        mAdapter.setOnLoadMoreListener(RefreshHandler.this,
+                                RECYCLERVIEW);
+                        RECYCLERVIEW.setAdapter(mAdapter);
+                        BEAN.addIndex();
                     }
                 })
                 .build()
@@ -85,6 +86,37 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener,Base
 
     @Override
     public void onLoadMoreRequested() {
-
+        paging("index_2_data.json?index=");
     }
+
+    private void paging(final String url) {
+        final int pageSize = BEAN.getPageSize();
+        final int currentCount = BEAN.getCurrentCount();
+        final int total = BEAN.getTotalCount();
+        final int index = BEAN.getPageIndex();
+
+        if (mAdapter.getData().size() < pageSize || currentCount >= total) {
+            mAdapter.loadMoreEnd(true);
+        } else {
+            Latte.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    RestClient.builder()
+                            .url(url + index)
+                            .success(response -> {
+                                LatteLogger.json("paging", response);
+                                CONVERTER.clearData();
+                                mAdapter.addData(CONVERTER.setJsonData(response).convert());
+                                //累加数量
+                                BEAN.setCurrentCount(mAdapter.getData().size());
+                                mAdapter.loadMoreComplete();
+                                BEAN.addIndex();
+                            })
+                            .build()
+                            .get();
+                }
+            }, 1000);
+        }
+    }
+
 }

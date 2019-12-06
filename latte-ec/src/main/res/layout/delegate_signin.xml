@@ -56,6 +56,7 @@
                     android:layout_height="wrap_content"
                     android:hint="邮箱"
                     android:inputType="textEmailAddress"
+                    android:text="111@qq.com"
                     tools:ignore="HardcodedText" />
 
             </android.support.design.widget.TextInputLayout>
@@ -73,6 +74,7 @@
                     android:layout_height="wrap_content"
                     android:hint="密码"
                     android:inputType="textPassword"
+                    android:text="111111"
                     tools:ignore="HardcodedText" />
 
             </android.support.design.widget.TextInputLayout>

@@ -3,6 +3,7 @@ package com.diabin.fastec.example;
 import android.app.Application;
 import android.support.annotation.Nullable;
 
+import com.diabin.fastec.example.event.ShareEvent;
 import com.diabin.latte.core.app.Latte;
 import com.diabin.latte.core.delegates.web.event.TestEvent;
 import com.diabin.latte.core.net.interceptors.DebugInterceptor;
@@ -40,6 +41,7 @@ public class ExampleApp extends Application {
                 .withWeChatAppSecret("")
                 .withJavaInterface("latte")
                 .withWebEvent("test", new TestEvent())
+                .withWebEvent("share",new ShareEvent())
                 .withWebHost("https://www.baidu.com")
                 .withInterceptor(new AddCookieInterceptor())//添加cookie同步浏览器
                 .configure();
