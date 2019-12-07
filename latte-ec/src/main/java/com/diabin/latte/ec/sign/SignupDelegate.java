@@ -1,7 +1,6 @@
 package com.diabin.latte.ec.sign;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -19,8 +18,6 @@ import com.diabin.latte.core.net.callback.ISuccess;
 import com.diabin.latte.core.util.log.LatteLogger;
 import com.diabin.latte.ec.R;
 import com.diabin.latte.ec.R2;
-
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -109,6 +106,7 @@ public class SignupDelegate extends LatteDelegate {
     void onClickSignup() {
         if (checkForm()) {
 
+            //php最终还是请求json
             RestClient.builder()
                     .url("http://mock.fulingjie.com/mock-android/data/user_profile.json")
                     .params("name", mName)
